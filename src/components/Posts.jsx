@@ -4,13 +4,13 @@ import { connect } from "react-redux";
 
 import User from "./User";
 
-import { fetchPosts } from "../actions";
+import { fetchPostsAndUsers } from "../actions";
 
 const Posts = (props) => {
   console.log(props);
 
   useEffect(() => {
-    props.fetchPosts();
+    props.fetchPostsAndUsers();
   }, []);
 
   const renderPosts = () => {
@@ -19,7 +19,7 @@ const Posts = (props) => {
         <div className="post-wrapper" key={post.id}>
           <div className="post-title">Title: {post.title}</div>
           <div className="post-description">Description: {post.body}</div>
-          <User />
+          <User userId={post.userId} />
         </div>
       );
     });
@@ -40,4 +40,4 @@ const mapPropsToState = (state) => {
   };
 };
 
-export default connect(mapPropsToState, { fetchPosts })(Posts);
+export default connect(mapPropsToState, { fetchPostsAndUsers })(Posts);

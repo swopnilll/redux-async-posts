@@ -1,19 +1,11 @@
-const userReducer = () => {
-  return [
-    {
-      id: 1,
-      name: "Leanne Graham",
-      username: "Bret",
-      email: "Sincere@april.biz",
-    },
+const userReducer = (state = [], action) => {
+  
+  if(action.type === "FETCH_USER"){
+    return [...state, action.payload]
+  }
 
-    {
-        id: 2,
-        name: "Graham",
-        username: "Gramm",
-        email: "gram@gmail.com",
-    },
-  ];
+  return state;
+
 };
 
 export default userReducer;

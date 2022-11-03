@@ -1,9 +1,21 @@
-import React from 'react'
+import React, { useEffect } from "react";
 
-const User = () => {
+import { connect } from "react-redux";
+
+const User = (props) => {
+  console.log(props);
+
   return (
-    <div>User</div>
-  )
-}
+    <>
+      {props.user ? <h1>{props.user.name}</h1> : <div>loading .........</div>}
+    </>
+  );
+};
 
-export default User
+const mapPropsToState = (state, ownProps) => {
+  return {
+    user: state.users.find((user) => user.id === ownProps.userId),
+  };
+};
+
+export default connect(mapPropsToState)(User);
